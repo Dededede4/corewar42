@@ -6,7 +6,7 @@
 #    By: gnebie <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/06 05:39:15 by gnebie            #+#    #+#              #
-#    Updated: 2017/03/24 15:16:51 by mprevot          ###   ########.fr        #
+#    Updated: 2017/03/29 11:20:53 by gnebie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,10 @@ $(NAME) : $(LIB) $(OBJ_DIR) $(addprefix $(OBJ_DIR), $(OBJ)) ../includes/corewar.
 	@(echo "\t\t\t\t\t\t\t\t | |___| (_) || |  |  __/   \\ V  V /| (_| || |   ";)
 	@(echo "\t\t\t\t\t\t\t\t  \\____|\\___/ |_|   \\___|    \\_/\\_/  \\__,_||_|   ";)
 	@($(CC) $(FLAGS) $(SPE_FLAGS) $(addprefix $(OBJ_DIR), $(OBJ)) $(LIB) -I$(INC) -o $(NAME))
-	@(echo "\033[33mASM Pret\033[32;6m\n ---Les Champions peuvent commencer la compilation !---\033[0m")
+	@(echo "\033[33mASM Pret\033[32;6m\n ---Les Champions peuvent commencer la compilation !---\033[0m\n\n")
 
 $(LIB) :
-	@(cd $(LIB_DIR) && make)
+	@(cd $(LIB_DIR) && MAKE)
 
 $(OBJ_DIR) :
 	mkdir $(OBJ_DIR)
@@ -57,11 +57,11 @@ $(OBJ_DIR)%.o : $(addprefix $(SRC_DIR), %.c)
 clean :
 	@(rm -f $(addprefix $(OBJ_DIR), $(OBJ)))
 	@(echo "\033[33msupression des points o\033[0m")
-	@(cd $(LIB_DIR) && make)
+	@(cd $(LIB_DIR) && MAKE $@)
 
 fclean : clean
 	@(rm -f $(NAME))
 	@(echo "\033[33msupression de l'asm\033[0m")
-	@(cd $(LIB_DIR) && make)
+	@(cd $(LIB_DIR) && MAKE $@)
 
 re : fclean all
